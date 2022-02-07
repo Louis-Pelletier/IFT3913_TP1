@@ -28,17 +28,17 @@ abstract public class Metricable {
     /**
      *
      */
-    public abstract void calculateAllMetric();
+    public abstract void computeAllMetric();
 
     /**
      *
      */
-    protected abstract void calculateDc();
+    protected abstract void computeDc();
 
     /**
      *
      */
-    protected abstract void calculateBc();
+    protected abstract void computeBc();
 
     /**
      *

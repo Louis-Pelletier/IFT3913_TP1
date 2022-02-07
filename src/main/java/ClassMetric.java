@@ -28,46 +28,46 @@ public class ClassMetric extends Metricable {
     /**
      *
      */
-    public void calculateAllMetric() {
-        calculateLoc();
-        calculateCloc();
-        calculateDc();
-        calculateWmc();
-        calculateBc();
+    public void computeAllMetric() {
+        computeLoc();
+        computeCloc();
+        computeDc();
+        computeWmc();
+        computeBc();
     }
 
     /**
      *
      */
-    protected void calculateLoc() {
-
-    }
-
-    /**
-     *
-     */
-    protected void calculateCloc() {
+    protected void computeLoc() {
 
     }
 
     /**
      *
      */
-    protected void calculateDc() {
+    protected void computeCloc() {
 
     }
 
     /**
      *
      */
-    protected void calculateWmc() {
+    protected void computeDc() {
 
     }
 
     /**
      *
      */
-    protected void calculateBc() {
+    protected void computeWmc() {
+
+    }
+
+    /**
+     *
+     */
+    protected void computeBc() {
 
     }
 
@@ -76,7 +76,7 @@ public class ClassMetric extends Metricable {
      */
     public void writeInFile() {
         ClassFile classFile = ClassFile.getInstance();
-        classFile.add(filePath + ", " + getName() + ", " + loc + ", " + cloc + ", " + dc);
+        classFile.add(filePath + ", " + getName() + ", " + loc + ", " + cloc + ", " + dc + ", " + wmc + ", " + bc);
     }
 
     /**
