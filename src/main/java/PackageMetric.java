@@ -71,7 +71,7 @@ public class PackageMetric extends Metricable {
      *
      */
     protected void calculateDc() {
-
+        dc = cloc/loc;
     }
 
     /**
@@ -85,7 +85,7 @@ public class PackageMetric extends Metricable {
      *
      */
     protected void calculateBc() {
-
+        bc = dc/wcp;
     }
 
     /**
