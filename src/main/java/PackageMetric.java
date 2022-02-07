@@ -1,6 +1,7 @@
 package main.java;
 
 import java.io.File;
+import java.util.Arrays;
 
 /**
  *
@@ -9,6 +10,7 @@ public class PackageMetric extends Metricable {
 
     //region Attributs
     private String dir;
+    private String packageName;
     private double wcp;
     private Boolean isPackage;
     //endregion
@@ -18,11 +20,14 @@ public class PackageMetric extends Metricable {
      *
      * @param dir
      */
-    public PackageMetric(String dir) {
+    public PackageMetric(String dir, String name) {
         super();
         this.dir = dir;
         this.wcp = 0;
         this.isPackage = false;
+
+        File file = new File(dir);
+        packageName = name + "." + file.getName();
     }
     //endregion
 
@@ -47,6 +52,7 @@ public class PackageMetric extends Metricable {
 
             //Calcul récursive avec les classes (vérif .java)
             if(files[i].isFile() && files[i].getName().split("\\.")[1].equals("java")) {
+
                 isPackage = true;
                 ClassMetric classMetric = new ClassMetric(files[i].getPath());
                 classMetric.calculateAllMetric();
@@ -95,7 +101,7 @@ public class PackageMetric extends Metricable {
             //Calcul récursif avec les sous-paquets
             if(!files[i].isFile()) {
 
-                PackageMetric packageMetric = new PackageMetric(files[i].getPath());
+                PackageMetric packageMetric = new PackageMetric(files[i].getPath(),packageName);
                 packageMetric.calculateAllMetric();
                 if(packageMetric.getIsPackage())
                     packageMetric.writeInFile();
@@ -119,9 +125,22 @@ public class PackageMetric extends Metricable {
      */
     protected String getName() {
 
-        File file = new File(dir);
-        String name = file.getName();
-        return name;
+        String newPackageName;
+
+        if(packageName.contains("src.")) {   //Recherche de src dans le nom du paquet
+
+            int index = packageName.lastIndexOf("src.");
+            newPackageName = packageName.substring(index + 4);
+            return newPackageName;
+
+        } else if(packageName.charAt(0) == '.') {  //On s'assure de ne pas commencer par '.'
+
+            newPackageName = packageName.substring(1);
+            return newPackageName;
+
+        }
+
+        return packageName;
 
     }
     //endregion
