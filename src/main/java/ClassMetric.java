@@ -41,6 +41,27 @@ public class ClassMetric extends Metricable {
      */
     protected void computeLoc() {
 
+=======
+        int lines = 0;
+        String line;
+
+        try{
+            FileReader fileReader = new FileReader(filePath);
+            BufferedReader br = new BufferedReader(fileReader);
+            while((line = br.readLine()) != null){
+                if(!line.equals("")){
+                    lines++;
+                }
+            }
+            cloc = lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+=======
+    protected void computeLoc() {
+
+>>>>>>> main
+>>>>>>> Stashed changes
     }
 
     /**
@@ -48,6 +69,46 @@ public class ClassMetric extends Metricable {
      */
     protected void computeCloc() {
 
+=======
+        File file = new File(filePath);
+        int lines = 0;
+        String line;
+        int state = STATE_NON_IMBRIQUE;      // État qui indique s'il s'agit d'un commentaire imbriqué
+        int counter = 0;    // Compteur pour les commentaires imbiqués
+
+        try{
+            FileReader fileReader = new FileReader(file);
+            BufferedReader br = new BufferedReader(fileReader);
+            while((line = br.readLine()) != null){
+                if(state == 1){
+                    counter++;
+                }
+                if(line.contains("//")){
+                    System.out.println(line);
+                    lines++;
+                    counter = 0;
+                }
+                else if(line.contains("/*") || line.contains("/**")){
+                    System.out.println(line);
+                    lines++;
+                    state = STATE_IMBRIQUE;
+                }
+                else if(line.contains("*/")){
+                    System.out.println(line);
+                    lines+= counter;
+                    counter = 0;
+                    state = STATE_NON_IMBRIQUE;
+                }
+            }
+            cloc = lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+=======
+    protected void computeCloc() {
+
+>>>>>>> main
+>>>>>>> Stashed changes
     }
 
     /**
@@ -55,6 +116,13 @@ public class ClassMetric extends Metricable {
      */
     protected void computeDc() {
 
+=======
+        dc = cloc/loc;
+=======
+    protected void computeDc() {
+
+>>>>>>> main
+>>>>>>> Stashed changes
     }
 
     /**
@@ -69,6 +137,13 @@ public class ClassMetric extends Metricable {
      */
     protected void computeBc() {
 
+=======
+        bc = dc/wmc;
+=======
+    protected void computeBc() {
+
+>>>>>>> main
+>>>>>>> Stashed changes
     }
 
     /**
