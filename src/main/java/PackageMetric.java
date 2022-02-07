@@ -35,15 +35,15 @@ public class PackageMetric extends Metricable {
     /**
      *
      */
-    public void calculateAllMetric() {
-        calculateAllClasses();
-        calculateDc();
-        calculateWcp();
-        calculateBc();
-        calculateSubPackage();
+    public void computeAllMetric() {
+        computeAllClasses();
+        computeDc();
+        computeWcp();
+        computeBc();
+        computeSubPackage();
     }
 
-    private void calculateAllClasses() {
+    private void computeAllClasses() {
 
         File file = new File(dir);
         File[] files = file.listFiles();
@@ -55,7 +55,7 @@ public class PackageMetric extends Metricable {
 
                 isPackage = true;
                 ClassMetric classMetric = new ClassMetric(files[i].getPath());
-                classMetric.calculateAllMetric();
+                classMetric.computeAllMetric();
                 classMetric.writeInFile();
 
                 this.loc += classMetric.getLoc();
@@ -70,28 +70,28 @@ public class PackageMetric extends Metricable {
     /**
      *
      */
-    protected void calculateDc() {
+    protected void computeDc() {
 
     }
 
     /**
      *
      */
-    protected void calculateWcp() {
+    protected void computeWcp() {
 
     }
 
     /**
      *
      */
-    protected void calculateBc() {
+    protected void computeBc() {
 
     }
 
     /**
      *
      */
-    protected void calculateSubPackage() {
+    protected void computeSubPackage() {
 
         File file = new File(dir);
         File[] files = file.listFiles();
@@ -102,7 +102,7 @@ public class PackageMetric extends Metricable {
             if(!files[i].isFile()) {
 
                 PackageMetric packageMetric = new PackageMetric(files[i].getPath(),packageName);
-                packageMetric.calculateAllMetric();
+                packageMetric.computeAllMetric();
                 if(packageMetric.getIsPackage())
                     packageMetric.writeInFile();
 
@@ -116,7 +116,7 @@ public class PackageMetric extends Metricable {
      */
     public void writeInFile() {
         PackageFile packageFile = PackageFile.getInstance();
-        packageFile.add(dir + ", " + getName() + ", " + loc + ", " + cloc + ", " + dc);
+        packageFile.add(dir + ", " + getName() + ", " + loc + ", " + cloc + ", " + dc + ", " + wcp + ", " + bc);
     }
 
     /**
@@ -148,6 +148,10 @@ public class PackageMetric extends Metricable {
     //region Getter
     public Boolean getIsPackage() {
         return isPackage;
+    }
+
+    public double getWcp() {
+        return wcp;
     }
     //endregion
 

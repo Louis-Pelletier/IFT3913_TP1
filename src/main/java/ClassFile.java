@@ -16,7 +16,7 @@ public class ClassFile extends Writer {
      */
     private ClassFile() {
         super("classes.csv");
-        super.add("chemin, class, classes_LOC, classe_CLOL, classe_DC");
+        super.add("chemin, class, classes_LOC, classe_CLOL, classe_DC, WMC, classe_BC");
     }
     //endregion
 

@@ -16,7 +16,7 @@ public class PackageFile extends Writer {
      */
     private PackageFile() {
         super("paquets.csv");
-        super.add("chemin, paquet, paquet_LOC, paquet_CLOL, paquet_DC");
+        super.add("chemin, paquet, paquet_LOC, paquet_CLOL, paquet_DC, WCP, paquet_BC");
     }
     //endregion
 
