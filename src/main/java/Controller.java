@@ -2,14 +2,24 @@ package main.java;
 
 import java.io.File;
 
+/**
+ *
+ */
 public class Controller {
 
     String path;
 
+    /**
+     *
+     * @param path
+     */
     public Controller(String path) {
         this.path = path;
     }
 
+    /**
+     * 
+     */
     public void computeAllMetric() {
 
         File file = new File(path);
