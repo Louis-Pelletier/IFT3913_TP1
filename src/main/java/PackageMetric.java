@@ -4,7 +4,10 @@ import java.io.File;
 import java.util.Arrays;
 
 /**
- *
+ * Classe qui calcule les métriques de lignes de code,
+ * lignes de code contenant des commentaires, la densité de commentaire,
+ * le degré selon lequel une classe est bien commentée, ainsi que le WMC.
+ * Le tout pour les paquets.
  */
 public class PackageMetric extends Metricable {
 
@@ -109,7 +112,8 @@ public class PackageMetric extends Metricable {
     }
 
     /**
-     *
+     * méthode qui écrit une ligne contenant toutes les informations que cette classe calcule au début du fichier
+     * Chemin + nom de la classe + loc + cloc + dc + wmc + bc.
      */
     public void writeInFile() {
         PackageFile packageFile = PackageFile.getInstance();
@@ -118,8 +122,8 @@ public class PackageMetric extends Metricable {
     }
 
     /**
-     *
-     * @return
+     * Méthode pour obtenir le nom d'un fichier.
+     * @return le nom du fichier.
      */
     protected String getName() {
 

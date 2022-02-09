@@ -6,7 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
+ * Classe qui calcule les métriques de lignes de code,
+ * lignes de code contenant des commentaires, la densité de commentaire,
+ * le degré selon lequel une classe est bien commentée, ainsi que le WMC.
+ * Le tout pour les classes.
+ * ++
  *
+ * @author Louis pelletier & Nick (Mettre ton nom complet)
  */
 public class ClassMetric extends Metricable {
 
@@ -19,8 +25,9 @@ public class ClassMetric extends Metricable {
 
     //region Constructeur
     /**
-     *
-     * @param filePath
+     * Constructeur de la classe ClassMetric.
+     * assigne le filepath de la classe au paramètre utilisé et assigne 1 au Wmc de la classe.
+     * @param filePath chemin vers un fichier.
      */
     public ClassMetric(String filePath) {
         super();
@@ -31,7 +38,7 @@ public class ClassMetric extends Metricable {
 
     //region Méthodes
     /**
-     *
+     * Méthode pour executer les cinq fonctions de calcule. (Loc, Cloc, Dc, Wmc, Bc).
      */
     public void computeAllMetric() {
         computeLoc();
@@ -42,7 +49,7 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
+     * Méthode permettant de calculer les lignes de code dans un fichier.
      */
     protected void computeLoc() {
 
@@ -63,6 +70,8 @@ public class ClassMetric extends Metricable {
         }
     }
     /**
+     * Méthode permettant de calculer les lignes de code comportant
+     * des commentaires dans un fichier.
      *
      */
     protected void computeCloc() {
@@ -98,7 +107,7 @@ public class ClassMetric extends Metricable {
         }
     }
     /**
-     *
+     * Méthode simple qui calcule la densité de commentaire en divisant CLOC par LOC.
      */
     protected void computeDc() {
         dc = (double) cloc / (double) loc;
@@ -133,13 +142,17 @@ public class ClassMetric extends Metricable {
     }
 
     /**
+     * Méthode simple qui calucle le degré selon lequel une classe est bien commentée,
+     * en divisant Dc par Wmc.
      *
      */
     protected void computeBc() {
         bc = dc / wmc;
     }
+
     /**
-     *
+     * méthode qui écrit une ligne contenant toutes les informations que cette classe calcule au début du fichier
+     * Chemin + nom de la classe + loc + cloc + dc + wmc + bc.
      */
     public void writeInFile() {
         ClassFile classFile = ClassFile.getInstance();
@@ -148,8 +161,8 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
-     * @return
+     * Méthode pour obtenir le nom d'un fichier.
+     * @return le nom du fichier.
      */
     protected String getName() {
         File file = new File(filePath);
@@ -159,8 +172,9 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
-     * @param line
+     * Méthode indiquant si un string est vide.
+     * @param line une ligne d'un fichier
+     * @return retourne True la ligne est vide.
      */
     private Boolean isEmpty(String line) {
         String noTabLine = line.replace("\t","");
