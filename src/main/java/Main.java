@@ -14,6 +14,8 @@ public class Main {
         if(file.exists()) {
             Controller controller = new Controller(s);
             controller.computeAllMetric();
+        } else {
+            System.out.println("Not a file");
         }
 
     }

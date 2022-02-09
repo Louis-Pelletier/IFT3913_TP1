@@ -37,9 +37,10 @@ public class PackageMetric extends Metricable {
      */
     public void computeAllMetric() {
         computeAllClasses();
-        computeDc();
-        computeWcp();
-        computeBc();
+        if(isPackage) {
+            computeDc();
+            computeBc();
+        }
         computeSubPackage();
     }
 
@@ -60,6 +61,7 @@ public class PackageMetric extends Metricable {
 
                 this.loc += classMetric.getLoc();
                 this.cloc += classMetric.getCloc();
+                this.wcp += classMetric.getWmc();
 
             }
 
@@ -71,14 +73,7 @@ public class PackageMetric extends Metricable {
      *
      */
     protected void computeDc() {
-        dc = cloc/loc;
-    }
-
-    /**
-     *
-     */
-    protected void computeWcp() {
-
+        dc = (double) cloc/ (double) loc;
     }
 
     /**
@@ -106,6 +101,8 @@ public class PackageMetric extends Metricable {
                 if(packageMetric.getIsPackage())
                     packageMetric.writeInFile();
 
+                this.wcp += packageMetric.getWcp();
+
             }
         }
 
@@ -116,7 +113,8 @@ public class PackageMetric extends Metricable {
      */
     public void writeInFile() {
         PackageFile packageFile = PackageFile.getInstance();
-        packageFile.add(dir + ", " + getName() + ", " + loc + ", " + cloc + ", " + dc + ", " + wcp + ", " + bc);
+        packageFile.add(getPath("src",dir) + ", " + getName() + ", " + loc + ", " +
+                cloc + ", " + dc + ", " + wcp + ", " + bc);
     }
 
     /**

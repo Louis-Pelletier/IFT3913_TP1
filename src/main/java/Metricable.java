@@ -1,5 +1,7 @@
 package main.java;
 
+import java.io.File;
+
 /**
  *
  */
@@ -44,6 +46,20 @@ abstract public class Metricable {
      *
      */
     public abstract void writeInFile();
+
+    /**
+     *
+     * @param root
+     * @param filePath
+     * @return
+     */
+    protected String getPath(String root, String filePath) {
+        File file = new File(filePath);
+        String absolutePath = file.getAbsolutePath();
+        int srcPosition = absolutePath.lastIndexOf(root);
+        String relativePath = absolutePath.substring(srcPosition);
+        return relativePath;
+    }
 
     /**
      *
