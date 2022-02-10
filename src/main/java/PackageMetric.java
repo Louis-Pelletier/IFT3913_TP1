@@ -43,11 +43,11 @@ public class PackageMetric extends Metricable {
      */
     public void computeAllMetric() {
         computeAllClasses();
+        computeSubPackage();
         if(isPackage) {
             computeDc();
             computeBc();
         }
-        computeSubPackage();
     }
     /**
      * Méthode qui calcule le loc, cloc et wcp de toutes les classes.
@@ -88,7 +88,7 @@ public class PackageMetric extends Metricable {
      * Méthode simple qui calcule le degré selon lequel une classe est bien commentée en divisant Dc par wcp.
      */
     protected void computeBc() {
-        bc = dc/ (double)wcp;
+        bc = dc/ (double) wcp;
     }
 
     /**
