@@ -26,7 +26,7 @@ public class ClassMetric extends Metricable {
     //region Constructeur
     /**
      * Constructeur de la classe ClassMetric.
-     * assigne le filepath de la classe au paramètre utilisé et assigne 1 au Wmc de la classe.
+     * Assigne le filepath de la classe au paramètre utilisé et assigne 1 au Wmc de la classe.
      * @param filePath chemin vers un fichier.
      */
     public ClassMetric(String filePath) {
@@ -114,7 +114,7 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
+     * Méthode qui calcule le WMC (Weighted methods per Class).
      */
     protected void computeWmc() {
         File file = new File(filePath);
@@ -151,7 +151,7 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     * méthode qui écrit une ligne contenant toutes les informations que cette classe calcule au début du fichier
+     * Méthode qui écrit une ligne contenant toutes les informations que cette classe calcule au début du fichier
      * Chemin + nom de la classe + loc + cloc + dc + wmc + bc.
      */
     public void writeInFile() {
@@ -185,9 +185,9 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
-     * @param line
-     * @return
+     * Méthode qui vérifie si une ligne (dans ce cas ci, une ligne d'un fichier) contient un if, une boucle for, une boucle while, ou un switch.
+     * @param line ligne d'un fichier lu.
+     * @return Retourne vrai si elle la ligne comporte un des quatre, sinon faux.
      */
     private Boolean containsPredicate(String line) {
         String noSpaceLine = line.replace(" ","");
@@ -200,9 +200,9 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     *
-     * @param line
-     * @return
+     * Méthode qui vérifie si une ligne (dans ce cas ci, une ligne d'un fichier) contient une méthode
+     * @param line ligne d'un fichier lu.
+     * @return Retourne vrai si elle la ligne comporte une méthode, sinon faux.
      */
     private Boolean isMethod(String line) {
         if(line.length() < 5)

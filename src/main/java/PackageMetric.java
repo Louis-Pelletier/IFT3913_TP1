@@ -20,8 +20,11 @@ public class PackageMetric extends Metricable {
 
     //region Constructeur
     /**
-     *
-     * @param dir
+     * Constructeur de la classe ClassMetric.
+     * Assigne le directory de la classe au paramètre utilisé, assigne 0 au Wcp de la classe.
+     * Assigne le packageName à l'aide du paramètre
+     * @param dir nom du directory
+     * @param name nom de fichier
      */
     public PackageMetric(String dir, String name) {
         super();
@@ -36,7 +39,8 @@ public class PackageMetric extends Metricable {
 
     //region Méthodes
     /**
-     *
+     * Méthode pour executer le loc, cloc et le wcp de toutes les classes dans le directory.
+     * S'il s'agit d'un package, elle calcule le Dc et le Bc.
      */
     public void computeAllMetric() {
         computeAllClasses();
@@ -46,7 +50,9 @@ public class PackageMetric extends Metricable {
         }
         computeSubPackage();
     }
-
+    /**
+     * Méthode qui calcule le loc, cloc et wcp de toutes les classes.
+     */
     private void computeAllClasses() {
 
         File file = new File(dir);
@@ -73,21 +79,21 @@ public class PackageMetric extends Metricable {
     }
 
     /**
-     *
+     * Méthode simple qui calcule la densité de commentaire en divisant CLOC par LOC.
      */
     protected void computeDc() {
         dc = (double) cloc/ (double) loc;
     }
 
     /**
-     *
+     * Méthode simple qui calcule le degré selon lequel une classe est bien commentée en divisant Dc par wcp.
      */
     protected void computeBc() {
         bc = dc/wcp;
     }
 
     /**
-     *
+     * Méthode qui calcule les métriques des sous-packets.
      */
     protected void computeSubPackage() {
 
