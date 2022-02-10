@@ -92,7 +92,8 @@ public class ClassMetric extends Metricable {
                 } else if (line.contains("/*") || line.contains("/**")) {
                     lines++;
                     state = STATE_IMBRIQUE;
-                } else if (line.contains("*/")) {
+                }
+                if (line.contains("*/")) {
                     lines += counter;
                     counter = 0;
                     state = STATE_NON_IMBRIQUE;
