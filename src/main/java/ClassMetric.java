@@ -10,15 +10,12 @@ import java.io.IOException;
  * lignes de code contenant des commentaires, la densité de commentaire,
  * le degré selon lequel une classe est bien commentée, ainsi que le WMC.
  * Le tout pour les classes.
- * ++
- *
- * @author Louis pelletier & Nick (Mettre ton nom complet)
  */
 public class ClassMetric extends Metricable {
 
     //region Attributs
     private String filePath;
-    private double wmc;
+    private int wmc;
     final int STATE_NON_IMBRIQUE = 0;
     final int STATE_IMBRIQUE = 1;
     //endregion
@@ -26,13 +23,13 @@ public class ClassMetric extends Metricable {
     //region Constructeur
     /**
      * Constructeur de la classe ClassMetric.
-     * Assigne le filepath de la classe au paramètre utilisé et assigne 1 au Wmc de la classe.
+     * Assigne le filepath de la classe au paramètre utilisé et assigne 0 au Wmc de la classe.
      * @param filePath chemin vers un fichier.
      */
     public ClassMetric(String filePath) {
         super();
         this.filePath = filePath;
-        this.wmc = 1;
+        this.wmc = 0;
     }
     //endregion
 
@@ -125,6 +122,7 @@ public class ClassMetric extends Metricable {
             FileReader fileReader = new FileReader(file);
             BufferedReader br = new BufferedReader(fileReader);
             while ((line = br.readLine()) != null) {
+
                if(containsPredicate(line))
                    predicates++;
 
@@ -133,12 +131,14 @@ public class ClassMetric extends Metricable {
                    predicates++;
                }
 
-
             }
             wmc += predicates;
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        if(wmc == 0)
+            wmc = 1;
     }
 
     /**
@@ -147,7 +147,7 @@ public class ClassMetric extends Metricable {
      *
      */
     protected void computeBc() {
-        bc = dc / wmc;
+        bc = dc / (double) wmc;
     }
 
     /**
@@ -200,7 +200,7 @@ public class ClassMetric extends Metricable {
     }
 
     /**
-     * Méthode qui vérifie si une ligne (dans ce cas ci, une ligne d'un fichier) contient une méthode
+     * Méthode qui vérifie si une ligne (dans ce cas ci, une ligne d'un fichier) contient une le début d'une méthode
      * @param line ligne d'un fichier lu.
      * @return Retourne vrai si elle la ligne comporte une méthode, sinon faux.
      */
@@ -226,7 +226,7 @@ public class ClassMetric extends Metricable {
         return cloc;
     }
 
-    public double getWmc() {
+    public int getWmc() {
         return wmc;
     }
     //endregion

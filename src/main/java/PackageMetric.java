@@ -1,7 +1,6 @@
 package main.java;
 
 import java.io.File;
-import java.util.Arrays;
 
 /**
  * Classe qui calcule les métriques de lignes de code,
@@ -14,7 +13,7 @@ public class PackageMetric extends Metricable {
     //region Attributs
     private String dir;
     private String packageName;
-    private double wcp;
+    private int wcp;
     private Boolean isPackage;
     //endregion
 
@@ -89,7 +88,7 @@ public class PackageMetric extends Metricable {
      * Méthode simple qui calcule le degré selon lequel une classe est bien commentée en divisant Dc par wcp.
      */
     protected void computeBc() {
-        bc = dc/wcp;
+        bc = dc/ (double)wcp;
     }
 
     /**
@@ -158,7 +157,7 @@ public class PackageMetric extends Metricable {
         return isPackage;
     }
 
-    public double getWcp() {
+    public int getWcp() {
         return wcp;
     }
     //endregion

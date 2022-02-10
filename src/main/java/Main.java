@@ -6,8 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        //Temporaire, utilisé args[0] quand fonctionnel
-        String s = "C:\\Users\\nickd\\OneDrive\\Bureau\\jfreechart-master";
+        String s = args[0];
 
         File file = new File(s);
 
@@ -15,7 +14,7 @@ public class Main {
             Controller controller = new Controller(s);
             controller.computeAllMetric();
         } else {
-            System.out.println("Not a file");
+            System.out.println("Not a path");
         }
 
     }

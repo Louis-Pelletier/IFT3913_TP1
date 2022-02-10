@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- *
+ * Classe abstraite qui permet d'écrire un fichier et de le fermer uniquement avec l'appel d'une fonction
  */
 abstract public class Writer {
 
@@ -17,8 +17,8 @@ abstract public class Writer {
 
     //region Constructeur
     /**
-     *
-     * @param fileName
+     * Constructeur de la classe, ouvre le fichier si possible, sinon affiche une erreur.
+     * @param fileName Le nom du fichier à écrire
      */
     public Writer(String fileName) {
         try {
@@ -39,7 +39,7 @@ abstract public class Writer {
 
     //region Méthodes
     /**
-     *
+     * Méthode qui permet d'écrire une ligne dans le fichier
      * @param s
      */
     public void add(String s) {
@@ -58,7 +58,7 @@ abstract public class Writer {
     }
 
     /**
-     *
+     * Méthode qui permet de fermer le fichier
      */
     public void closeWriter() {
         try {

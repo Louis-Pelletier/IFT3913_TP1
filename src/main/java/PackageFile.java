@@ -1,7 +1,7 @@
 package main.java;
 
 /**
- *
+ * Singleton qui permet d'écrire les paquets et leurs métriques dans un fichier .csv
  */
 public class PackageFile extends Writer {
 
@@ -12,7 +12,8 @@ public class PackageFile extends Writer {
 
     //region Constructeur
     /**
-     *
+     * Constructeur de la classe (privé)
+     * Initialise le fichier paquets.csv et ajoute la ligne avec les noms de métrique
      */
     private PackageFile() {
         super("paquets.csv");
@@ -22,8 +23,8 @@ public class PackageFile extends Writer {
 
     //region Méthodes
     /**
-     *
-     * @return
+     * Méthode qui permet d'obtenir une instance du singleton
+     * @return L'instance unique de la classe
      */
     public static PackageFile getInstance() {
         if(singleInstance == null)
