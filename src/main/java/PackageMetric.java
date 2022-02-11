@@ -60,7 +60,6 @@ public class PackageMetric extends Metricable {
         for(int i = 0; i < files.length; i++) {
 
             //Calcul récursive avec les classes (vérif .java)
-            System.out.println(files[i].getName());
             String[] splitExtension = files[i].getName().split("\\.");
             if(files[i].isFile() && splitExtension.length > 1 && splitExtension[1].equals("java")) {
 
