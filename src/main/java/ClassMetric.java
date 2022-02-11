@@ -16,6 +16,7 @@ public class ClassMetric extends Metricable {
     //region Attributs
     private String filePath;
     private int wmc;
+    private String root;
     final int STATE_NON_IMBRIQUE = 0;
     final int STATE_IMBRIQUE = 1;
     //endregion
@@ -25,11 +26,13 @@ public class ClassMetric extends Metricable {
      * Constructeur de la classe ClassMetric.
      * Assigne le filepath de la classe au paramètre utilisé et assigne 0 au Wmc de la classe.
      * @param filePath chemin vers un fichier.
+     * @param root La racine des chemin relatif
      */
-    public ClassMetric(String filePath) {
+    public ClassMetric(String filePath, String root) {
         super();
         this.filePath = filePath;
         this.wmc = 0;
+        this.root = root;
     }
     //endregion
 
@@ -157,7 +160,7 @@ public class ClassMetric extends Metricable {
      */
     public void writeInFile() {
         ClassFile classFile = ClassFile.getInstance();
-        classFile.add(getPath(filePath) + ", " + getName() + ", " + loc + ", " +
+        classFile.add(getPath(root, filePath) + ", " + getName() + ", " + loc + ", " +
                 cloc + ", " + dc + ", " + wmc + ", " + bc);
     }
 

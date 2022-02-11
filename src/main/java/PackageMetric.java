@@ -15,6 +15,7 @@ public class PackageMetric extends Metricable {
     private String packageName;
     private int wcp;
     private Boolean isPackage;
+    private String root;
     //endregion
 
     //region Constructeur
@@ -23,13 +24,15 @@ public class PackageMetric extends Metricable {
      * Assigne le directory de la classe au paramètre utilisé, assigne 0 au Wcp de la classe.
      * Assigne le packageName à l'aide du paramètre
      * @param dir nom du directory
+     * @param root La racine des chemin relatif
      * @param name nom de fichier
      */
-    public PackageMetric(String dir, String name) {
+    public PackageMetric(String dir, String root, String name) {
         super();
         this.dir = dir;
         this.wcp = 0;
         this.isPackage = false;
+        this.root = root;
 
         File file = new File(dir);
         packageName = name + "." + file.getName();
@@ -64,7 +67,7 @@ public class PackageMetric extends Metricable {
             if(files[i].isFile() && splitExtension.length > 1 && splitExtension[1].equals("java")) {
 
                 isPackage = true;
-                ClassMetric classMetric = new ClassMetric(files[i].getPath());
+                ClassMetric classMetric = new ClassMetric(files[i].getPath(), root);
                 classMetric.computeAllMetric();
                 classMetric.writeInFile();
 
@@ -105,7 +108,7 @@ public class PackageMetric extends Metricable {
             //Calcul récursif avec les sous-paquets
             if(!files[i].isFile()) {
 
-                PackageMetric packageMetric = new PackageMetric(files[i].getPath(),packageName);
+                PackageMetric packageMetric = new PackageMetric(files[i].getPath(),root, packageName);
                 packageMetric.computeAllMetric();
                 if(packageMetric.getIsPackage())
                     packageMetric.writeInFile();
@@ -123,7 +126,7 @@ public class PackageMetric extends Metricable {
      */
     public void writeInFile() {
         PackageFile packageFile = PackageFile.getInstance();
-        packageFile.add(getPath(dir) + ", " + getName() + ", " + loc + ", " +
+        packageFile.add(getPath(root, dir) + ", " + getName() + ", " + loc + ", " +
                 cloc + ", " + dc + ", " + wcp + ", " + bc);
     }
 
