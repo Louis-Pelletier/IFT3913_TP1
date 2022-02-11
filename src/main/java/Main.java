@@ -13,7 +13,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        String s = "src";
+        String s = args[0];
 
         File file = new File(s);
 
