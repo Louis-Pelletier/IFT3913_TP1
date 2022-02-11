@@ -30,9 +30,9 @@ public class Controller {
             root = properties.getProperty("root");
 
         } catch (IOException error) {
-            System.out.println("Fichier config.properties non trouvé. Root va être initialisé à src");
+            System.out.println("Fichier config.properties non trouvé. Les chemins affichés seront absolu");
             System.out.println("Erreur : " + error);
-            root = "src";
+            root = "";
         }
 
     }

@@ -1,9 +1,9 @@
 chemin, class, classes_LOC, classe_CLOL, classe_DC, WMC, classe_BC
 src\main\java\ClassFile.java, ClassFile, 31, 18, 0.5806451612903226, 3, 0.19354838709677422
-src\main\java\ClassMetric.java, ClassMetric, 204, 72, 0.35294117647058826, 31, 0.011385199240986719
+src\main\java\ClassMetric.java, ClassMetric, 205, 73, 0.35609756097560974, 31, 0.01148701809598741
 src\main\java\Controller.java, Controller, 52, 11, 0.21153846153846154, 4, 0.052884615384615384
 src\main\java\Main.java, Main, 21, 7, 0.3333333333333333, 2, 0.16666666666666666
-src\main\java\Metricable.java, Metricable, 61, 35, 0.5737704918032787, 2, 0.28688524590163933
+src\main\java\Metricable.java, Metricable, 67, 35, 0.5223880597014925, 4, 0.13059701492537312
 src\main\java\PackageFile.java, PackageFile, 31, 18, 0.5806451612903226, 3, 0.19354838709677422
-src\main\java\PackageMetric.java, PackageMetric, 131, 49, 0.37404580152671757, 18, 0.020780322307039866
+src\main\java\PackageMetric.java, PackageMetric, 132, 50, 0.3787878787878788, 18, 0.021043771043771045
 src\main\java\Writer.java, Writer, 59, 20, 0.3389830508474576, 3, 0.11299435028248588

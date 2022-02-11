@@ -49,7 +49,7 @@ abstract public class Metricable {
     protected abstract void writeInFile();
 
     /**
-     * Méthode permettant d'obtenir un path relatif à une racine en ayant un path absolu
+     * Méthode permettant d'obtenir un path relatif à une racine en ayant un path absolu. Retourne la path absolu en cas d'erreur avec la racine
      * @param root La racine des paths reltifs
      * @param filePath Le path absolu
      * @return Le path relatif à root
@@ -57,6 +57,15 @@ abstract public class Metricable {
     protected String getPath(String root, String filePath) {
         File file = new File(filePath);
         String absolutePath = file.getAbsolutePath();
+
+        if(root.equals("")) {
+            return absolutePath;
+        }
+
+        if(!absolutePath.contains(root)) {
+            return absolutePath;
+        }
+
         int srcPosition = absolutePath.lastIndexOf(root);
         String relativePath = absolutePath.substring(srcPosition);
         return relativePath;
