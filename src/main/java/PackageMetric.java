@@ -123,7 +123,7 @@ public class PackageMetric extends Metricable {
      */
     public void writeInFile() {
         PackageFile packageFile = PackageFile.getInstance();
-        packageFile.add(getPath("src",dir) + ", " + getName() + ", " + loc + ", " +
+        packageFile.add(getPath(dir) + ", " + getName() + ", " + loc + ", " +
                 cloc + ", " + dc + ", " + wcp + ", " + bc);
     }
 

@@ -157,7 +157,7 @@ public class ClassMetric extends Metricable {
      */
     public void writeInFile() {
         ClassFile classFile = ClassFile.getInstance();
-        classFile.add(getPath("src",filePath) + ", " + getName() + ", " + loc + ", " +
+        classFile.add(getPath(filePath) + ", " + getName() + ", " + loc + ", " +
                 cloc + ", " + dc + ", " + wmc + ", " + bc);
     }
 
